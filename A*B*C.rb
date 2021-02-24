@@ -1,28 +1,15 @@
-# 入力（K)
+# マイコード2
 K = gets.to_i
-
-# マイコード１
-# 配列で3つの整数の組み合わせ全て出して配列で持つ
-products = Array.new
-for i in 1..K
-  for j in 1.. K
-    for k in 1..K
-      products << [i, j, k]
-    end
+ans = 0
+1.upto(K) do |a|
+  1.upto(K / a) do |b|
+    ans += K / (a * b)
   end
 end
+puts ans
 
-# p products
-
-# 掛け算の結果がK以下のものを数える
-count = 0
-products.each do |product|
-  if K >= product.inject(&:*)
-    count += 1
-  end
-end
-# その配列の大きさが答えになる
-puts count
-
-# マイコード２
-# Kの組み合わせからいく
+# メモ
+=begin
+  aのループの中でbの範囲は最大値Kをaで割って出た商の数だけ取ることができる。K / a
+  cは最大値Kをa*bで割った商の数だけ取ることができるのでそれを答えに足せばいい。
+=end
